@@ -1,0 +1,9 @@
+node_modules
+.DS_Store
+dist
+dist-ssr
+*.local
+
+
+/api/node_modules
+/app/node_modules
