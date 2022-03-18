@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Link from 'next/link'
 
-import styles from '../src/styles/Home.module.scss'
 import { GetListBlogs } from '../src/redux/actions/blogs'
 
 const Index = () => {
@@ -24,15 +23,6 @@ const Index = () => {
 
   return (
     <>
-      {/* <div className='uyendo'>
-        <ul>
-          {
-            listBlogs && listBlogs.length && listBlogs.map((item,key) => {
-              return <li key={key}>id:{item.id} - <Link  href={`/blog-detail/${item.id}`}>{item.title}</Link>- {item.date_created}</li>
-            })
-          }
-        </ul>
-      </div> */}
       <div className="bg-gray-200 font-sans leading-normal tracking-normal">
 
         {/* <!--Header--> */}
@@ -164,9 +154,7 @@ const Index = () => {
 
 
         </div>
-
-
-
+        
       </div>
     </>
   )
