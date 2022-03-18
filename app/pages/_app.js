@@ -30,20 +30,30 @@ export default function App({ Component, pageProps }) {
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <header className={styles.header} style={{ flexDirection: 'column' }}>
-          <h1 className={styles.title} style={{ width: '100%' }}>
-            Welcome to <a style={{ display: 'inline-block' }} href="https://nextjs.org">Next.js!</a>
-          </h1>
-
-          <ul className={styles.menu}>
-            <li>
-              <Link href="/">Home</Link>
-            </li>
-            <li>
-              <Link href="/about">About Us</Link>
-            </li>
-          </ul>
-        </header>
+        {/* <!--Nav--> */}
+        <nav className="bg-gray-900 p-4 mt-0 w-full">
+          <div className="container mx-auto flex items-center">
+            <div className="flex text-white font-extrabold">
+              <a className="flex text-white text-base no-underline hover:text-white hover:no-underline" href="#">
+                👻 <span className="hidden w-0 md:w-auto md:block pl-1">DeMo</span>
+              </a>
+            </div>
+            <div className="flex pl-4 text-sm">
+              <ul className="list-reset flex justify-between flex-1 md:flex-none items-center">
+                <li className="mr-2">
+                  <Link href="/">
+                    <a className='text-white no-underline inline-block py-2 px-2'>HOME</a>
+                  </Link>
+                </li>
+                <li className="mr-2">
+                  <Link href="/about">
+                    <a className='inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-2'>ABOUT US</a>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
 
         <main className={styles.main}>
           <Transition
@@ -73,17 +83,33 @@ export default function App({ Component, pageProps }) {
           </Transition>
         </main>
 
-        <footer className={styles.footer}>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Powered by{' '}
-            <span className={styles.logo}>
-              {/* <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} /> */}
-            </span>
-          </a>
+        <footer class="bg-gray-900">
+          <div class="container max-w-6xl mx-auto flex items-center px-2 py-8">
+
+            <div class="w-full mx-auto flex flex-wrap items-center">
+              <div class="flex w-full md:w-1/2 justify-center md:justify-start text-white font-extrabold">
+                <Link class="text-gray-900 no-underline hover:text-gray-900 hover:no-underline text-base text-gray-200" href="/">
+                  👻 DeMo
+                </Link>
+              </div>
+              <div class="flex w-full pt-2 content-center justify-between md:w-1/2 md:justify-end">
+                <ul class="list-reset flex justify-center flex-1 md:flex-none items-center">
+                  <li>
+                    <Link class="inline-block py-2 px-3 text-white no-underline" href="/">Active</Link>
+                  </li>
+                  <li>
+                    <Link class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:underline py-2 px-3" href="/">link</Link>
+                  </li>
+                  <li>
+                    <Link class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:underline py-2 px-3" href="/">link</Link>
+                  </li>
+                  <li>
+                    <Link class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:underline py-2 px-3" href="/">link</Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </footer>
 
       </div>

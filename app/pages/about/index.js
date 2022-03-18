@@ -5,10 +5,14 @@ import { GetListBlogs } from '../../src/redux/actions/blogs'
 
 const codeStyle = {
   background: '#ebebeb',
-  width: 800,
+  width: '90vw',
   padding: 10,
   border: '1px solid grey',
-  marginBottom: 10,
+  marginTop: 50,
+  marginBottom: 50,
+  marginLeft:'auto',
+  marginRight:'auto',
+  overflowX:'auto'
 }
 
 const ShowReduxState = () => {
@@ -27,9 +31,6 @@ const ShowReduxState = () => {
       <pre style={codeStyle}>
         <code>{JSON.stringify(reducers, null, 4)}</code>
       </pre>
-      <Link href="/">
-        <a>Go Back Home</a>
-      </Link>
     </>
   )
 }
