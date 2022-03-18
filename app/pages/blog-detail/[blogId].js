@@ -2,6 +2,8 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { GetListBlogs } from '../../src/redux/actions/blogs'
+import parse from 'html-react-parser';
+
 
 const BlogDetail = () => {
     const router = useRouter()
@@ -51,7 +53,7 @@ const BlogDetail = () => {
                     <p className="text-sm md:text-base text-green-500 font-bold">{detail.date_created}</p>
                     <h1 className="font-bold break-normal text-3xl md:text-5xl">{detail?.title}</h1>
                     <div className="container w-full max-w-6xl mx-auto bg-white bg-cover mt-8 rounded">
-                        <img style={{ width: '100%' }} src={`${process.env.NEXT_PUBLIC_GRAPHQL}/assets/${detail?.image}`} />
+                        <img className='mx-auto' style={{ width: '50%' }} src={`${process.env.NEXT_PUBLIC_GRAPHQL}/assets/${detail?.image}`} />
                     </div>
                 </div>
             }
@@ -60,8 +62,8 @@ const BlogDetail = () => {
 
                 <div className="mx-0 sm:mx-6">
 
-                    <div className="bg-white w-full p-8 md:p-24 text-xl md:text-2xl text-gray-800 leading-normal" >
-                        {detail?.description}
+                    <div className="bg-white w-full p-8 md:p-24 text-lg md:text-lg text-gray-800 leading-normal" >
+                        {parse(`${detail?.description}`)}
                     </div>
 
                     {/* <!--Subscribe-->	 */}
