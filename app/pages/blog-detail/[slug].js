@@ -3,27 +3,28 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { GetListBlogs } from '../../src/redux/actions/blogs'
 import parse from 'html-react-parser';
+import moment from 'moment'
 
 
 const BlogDetail = () => {
     const router = useRouter()
     const dispatch = useDispatch()
-    const { blogId } = router.query
+    const { slug } = router.query
     const [detail, setDetail] = useState()
 
     const reducers = useSelector((state) => state.BlogsReducer)
     useEffect(() => {
-        if (reducers && reducers.GetListBlogs && blogId) {
-            const temp = reducers.GetListBlogs.find((item) => item.id == blogId)
+        if (reducers && reducers.GetListBlogs && slug) {
+            const temp = reducers.GetListBlogs.find((item) => item.slug == slug)
             setDetail(temp)
         } else {
             dispatch(GetListBlogs())
         }
-    }, [reducers, blogId])
+    }, [reducers, slug])
 
     return (
         <div>
-            <div className="bg-white fixed w-full z-10 top-0 hidden animated" style={{ opacity: '.95' }}>
+            <div className="bg-white fixed w-full z-10 top-0 hidden animated pt-50" style={{ opacity: '.95' }}>
                 <div className="bg-white">
                     <div className="flex flex-wrap items-center content-center">
                         <div className="flex w-1/2 justify-start text-white font-extrabold">
@@ -49,20 +50,18 @@ const BlogDetail = () => {
 
             {
                 detail &&
-                <div className="text-center pt-16 md:pt-10">
-                    <p className="text-sm md:text-base text-green-500 font-bold">{detail.date_created}</p>
-                    <h1 className="font-bold break-normal text-3xl md:text-5xl">{detail?.title}</h1>
+                <div className="text-center pt-8 md:pt-16 md:pt-10">
+                    <h1 className="font-bold break-normal text-3xl md:text-4xl md:max-w-[80%] md:m-auto mx-3">{detail?.title}</h1>
+                    <i className="text-sm md:text-base mt-3 block">Public Date: {moment(detail.date_created).format('LLLL')}</i>
                     <div className="container w-full max-w-6xl mx-auto bg-white bg-cover mt-8 rounded">
-                        <img className='mx-auto' style={{ width: '50%' }} src={`${process.env.NEXT_PUBLIC_GRAPHQL}/assets/${detail?.image}`} />
+                        <img className='mx-auto w-100 md:w-50' src={`${process.env.NEXT_PUBLIC_GRAPHQL}/assets/${detail?.image}`} />
                     </div>
                 </div>
             }
             {/* <!--Container--> */}
-            <div className="container max-w-5xl mx-auto -mt-10">
-
+            <div className="container max-w-5xl mx-auto mb-10">
                 <div className="mx-0 sm:mx-6">
-
-                    <div className="bg-white w-full p-8 md:p-24 text-lg md:text-lg text-gray-800 leading-normal" >
+                    <div className="bg-white w-full p-8 md:py-8 md:px-0 text-lg md:text-lg text-gray-800 leading-normal" >
                         {parse(`${detail?.description}`)}
                     </div>
 
@@ -80,25 +79,11 @@ const BlogDetail = () => {
                         </div>
                     </div>
                     {/* <!-- /Subscribe--> */}
-
-
-                    {/* <!--Author--> */}
-                    <div className="flex w-full items-center font-sans p-8 md:p-24">
-                        <img className="w-10 h-10 rounded-full mr-4" src="http://i.pravatar.cc/300" alt="Avatar of Author" />
-                        <div className="flex-1">
-                            <p className="text-base font-bold text-base md:text-xl leading-none">Ghostwind CSS</p>
-                            <p className="text-gray-600 text-xs md:text-base">Tailwind CSS version of Ghost's Casper theme by <a className="text-gray-800 hover:text-green-500 no-underline border-b-2 border-green-500" href="https://www.tailwindtoolbox.com">TailwindToolbox.com</a></p>
-                        </div>
-                        <div className="justify-end">
-                            <button className="bg-transparent border border-gray-500 hover:border-green-500 text-xs text-gray-500 hover:text-green-500 font-bold py-2 px-4 rounded-full">Read More</button>
-                        </div>
-                    </div>
-                    {/* <!--/Author--> */}
                 </div>
             </div>
 
-            <div className="bg-gray-200">
-                <div className="container w-full max-w-6xl mx-auto px-2 py-8">
+            {/* <div className="bg-gray-200">
+                <div className="container w-full max-w-6xl mx-auto px-2 pt-8">
                     <div className="flex flex-wrap -mx-2">
                         <div className="w-full md:w-1/3 px-2 pb-12">
                             <div className="h-full bg-white rounded overflow-hidden shadow-md hover:shadow-lg relative smooth">
@@ -156,7 +141,7 @@ const BlogDetail = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }

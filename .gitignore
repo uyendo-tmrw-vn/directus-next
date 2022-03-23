@@ -3,8 +3,10 @@ node_modules
 dist
 dist-ssr
 *.local
+*.env
 
 
 /api/node_modules
 /api/uploads
+/blog-cms/uploads
 /app/node_modules

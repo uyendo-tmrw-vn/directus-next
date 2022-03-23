@@ -8,6 +8,16 @@ const initialState = {
           ...state,
           GetListBlogs: action.response.data,
         }
+      case 'GET_BANNER':
+        return {
+          ...state,
+          GetBanner: action.response.data,
+        }
+      case 'GET_METADATA':
+        return {
+          ...state,
+          GetMetadata: action.response.data,
+        }
       default:
         return { ...state }
     }
