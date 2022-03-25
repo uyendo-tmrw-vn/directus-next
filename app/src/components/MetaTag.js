@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { GetMetaData } from '../redux/actions/blogs'
+import { GetMetaData } from '../redux/actions/blogAction'
 
 const MetaTag = ({ title, description, ogType, ogImage, twImage }) => {
   const router = useRouter()

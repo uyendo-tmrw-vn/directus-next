@@ -2,10 +2,13 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Link from 'next/link'
 
-import { GetBanner, GetListBlogs } from '../src/redux/actions/blogs'
 import moment from 'moment'
+import { Loading } from '@/components/Loading'
+import { GetBanner, GetListBlogs } from '@/redux/actions/blogAction'
+import { Carousel } from 'antd';
 
-const Index = () => {
+
+const Home = () => {
 
   const [listBlogs, setListBlogs] = useState([])
   const [banner, setBanner] = useState()
@@ -19,8 +22,9 @@ const Index = () => {
   const reducers = useSelector((state) => state.BlogsReducer)
 
   useEffect(() => {
+    console.log({ reducers });
     if (reducers && reducers.GetBanner) {
-      setBanner(reducers.GetBanner[0])
+      setBanner(reducers.GetBanner)
     }
     if (reducers && reducers.GetListBlogs) {
       setListBlogs(reducers.GetListBlogs)
@@ -29,32 +33,25 @@ const Index = () => {
 
   return (
     <>
+      {reducers.loading && <Loading />}
       <div className="bg-gray-200 font-sans leading-normal tracking-normal">
-        {
-          banner?.image &&
-          < div className="w-full m-0 p-0 bg-cover bg-center" style={{ backgroundImage: `url( ${process.env.NEXT_PUBLIC_GRAPHQL}/assets/${banner?.image})`, height: '60vh', maxHeight: '460px' }}>
-            <div className="container max-w-4xl mx-auto pt-16 md:pt-32 text-center break-normal">
-              {/* <!--Title--> */}
-              <p className="text-white font-extrabold text-3xl md:text-5xl">
-                👻 Welcome to my Blog
-              </p>
+        <Carousel autoplay>
+          {banner && banner.length > 0 && banner.map((item, key) => {
+            return <div key={key} className="w-full m-0 p-0 bg-cover bg-center">
+              <div className="w-full m-0 p-0 bg-cover bg-center" style={{ backgroundImage: `url( ${process.env.NEXT_PUBLIC_GRAPHQL}/assets/${item.image})`, height: '60vh', maxHeight: '460px' }}></div>
             </div>
-          </div>
-        }
+          })
+          }
+        </Carousel>
 
         {/* <!--Container--> */}
-        <div className="container px-4 md:px-0 max-w-6xl mx-auto -mt-32">
-
+        <div className="container px-4 md:px-0 max-w-6xl mx-auto ">
           <div className="mx-0 sm:mx-6">
-
             <div className=" w-full text-xl md:text-2xl text-gray-800 leading-normal rounded-t">
-
               {/* <!--Posts Container--> */}
               <div className="flex flex-wrap justify-between -mx-3">
-
-                {/* <!--1/3 col --> */}
                 {
-                  listBlogs && listBlogs.length > 0 ? listBlogs.map((item, key) => {
+                  listBlogs && listBlogs.length > 0 && listBlogs.map((item, key) => {
                     return <div key={key + 1} className="w-full md:w-1/3 px-3 py-6 flex flex-col ">
                       <div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
                         <div className="flex flex-wrap no-underline hover:no-underline flex-col h-[100%]">
@@ -79,12 +76,9 @@ const Index = () => {
                         </div>
                       </div>
                     </div>
-                  }) : ''
+                  })
                 }
-
               </div>
-              {/* <!--/ Post Content--> */}
-
             </div>
           </div>
         </div>
@@ -93,4 +87,4 @@ const Index = () => {
   )
 }
 
-export default Index
+export default Home
