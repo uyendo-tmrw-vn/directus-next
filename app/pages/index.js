@@ -38,7 +38,7 @@ const Home = () => {
         <Carousel autoplay>
           {banner && banner.length > 0 && banner.map((item, key) => {
             return <div key={key} className="w-full m-0 p-0 bg-cover bg-center">
-              <div className="w-full m-0 p-0 bg-cover bg-center" style={{ backgroundImage: `url( ${process.env.NEXT_PUBLIC_GRAPHQL}/assets/${item.image})`, height: '60vh', maxHeight: '460px' }}></div>
+              <div className="w-full m-0 p-0 bg-cover bg-center" style={{ backgroundImage: `url( ${process.env.API_URL}/assets/${item.image})`, height: '60vh', maxHeight: '460px' }}></div>
             </div>
           })
           }
@@ -56,7 +56,7 @@ const Home = () => {
                       <div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
                         <div className="flex flex-wrap no-underline hover:no-underline flex-col h-[100%]">
                           <Link href={`/blog-detail/${item.slug}`}>
-                            <a className="cursor-pointer h-48 position-relative overflow-hidden block"><img src={item?.image ? `${process.env.NEXT_PUBLIC_GRAPHQL}/assets/${item?.image}` : 'https://cdn.directus.io/docs/v9/reference/files/original-20220216A.jpg'} className="w-full rounded-t" /></a>
+                            <a className="cursor-pointer h-48 position-relative overflow-hidden block"><img src={item?.image ? `${process.env.API_URL}/assets/${item?.image}` : 'https://cdn.directus.io/docs/v9/reference/files/original-20220216A.jpg'} className="w-full rounded-t" /></a>
                           </Link>
                           <div className='p-6 flex-1 flex flex-col justify-between'>
                             <div>
@@ -69,7 +69,7 @@ const Home = () => {
                               <Link href={`/blog-detail/${item.slug}`}>
                                 <a className="font-italic d-block text-sm">Read more...</a>
                               </Link>
-                              {/* <img src={item?.image ? `${process.env.NEXT_PUBLIC_GRAPHQL}/assets/${item?.user_created}` : 'https://cdn.directus.io/docs/v9/reference/files/original-20220216A.jpg'} className="w-8 h-8 rounded-full mr-4 avatar" />
+                              {/* <img src={item?.image ? `${process.env.API_URL}/assets/${item?.user_created}` : 'https://cdn.directus.io/docs/v9/reference/files/original-20220216A.jpg'} className="w-8 h-8 rounded-full mr-4 avatar" />
                               <img className="w-8 h-8 rounded-full mr-4 avatar" data-tippy-content="Author Name" src="http://i.pravatar.cc/300" alt="Avatar of Author" /> */}
                             </div>
                           </div>

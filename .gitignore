@@ -4,6 +4,7 @@ dist
 dist-ssr
 *.local
 *.env
+*.next
 
 
 /api/node_modules

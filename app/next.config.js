@@ -8,6 +8,6 @@ module.exports = {
   source: '/:path*',
   headers: securityHeaders,
   images: {
-    domains: [process.env.NEXT_PUBLIC_GRAPHQL],
+    domains: [process.env.API_URL]
   },
 }

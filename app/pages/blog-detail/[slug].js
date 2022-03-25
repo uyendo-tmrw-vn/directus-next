@@ -57,7 +57,7 @@ const BlogDetail = () => {
                         <h1 className="font-bold break-normal text-3xl md:text-4xl md:max-w-[80%] md:m-auto mx-3">{detail?.title}</h1>
                         <i className="text-sm md:text-base mt-3 block">Public Date: {moment(detail.date_created).format('LLLL')}</i>
                         <div className="container w-full max-w-6xl mx-auto bg-white bg-cover mt-8 rounded">
-                            <img className='mx-auto w-100 md:w-50' src={`${process.env.NEXT_PUBLIC_GRAPHQL}/assets/${detail?.image}`} />
+                            <img className='mx-auto w-100 md:w-50' src={`${process.env.API_URL}/assets/${detail?.image}`} />
                         </div>
                     </div> : ''
             }
