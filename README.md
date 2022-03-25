@@ -1,1 +1,1 @@
-# Redux Next with redux-toolkit
+# directus-next
